@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <title>Meme Generator</title>
+</head>
+
+<body>
+  <h1 class="header">Meme Generator</h1>
+
+  <div class="meme-container" style="width:80%; margin: auto;">
+  
+    <form style="padding-bottom: 1rem;">
+      <label for="search">Filter memes</label>
+      <input type='text' class="basic" name="search" oninput="filterImage(event)" />
+    </form>
+  
+  
+    <div class="flex full-width">
+
+      <button onclick="move('prev')" id="prev">
+        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+      </button>
+
+      <div style="display:flex; width: 100%; overflow: scroll;" id="memes-viewer"></div>
+      
+      <button id="next" onclick="move('next')">
+        <i class="fa fa-arrow-right" aria-hidden="true"></i>
+      </button>
+
+    </div>
+
+    <div class="middle-container column">
+      <div class="flex">
+        <button onclick="random()" type="button" title="Random Meme" id="random">
+          Random Meme
+        </button>
+      
+        <button onclick="addText()" type="button" title="Add text to the canvas">
+          Add Text
+        </button>
+      
+        <button type="button" title="Delete selected element" id="delete" onclick="deleteActiveObject()">
+          Delete Selected Element
+        </button>
+  
+        <button type="button" title="Add image" id="add-image" onclick="clickElementById('file-upload-image')">
+          Add image
+        </button>
+      </div>
+      
+
+      <div id="canvas-container" style="width: 100%; height: 55vh;">
+
+        <canvas id="meme"></canvas>
+
+      </div>
+
+    </div>
+    
+
+    <div class="bottom-container flex">
+      
+      <div class="flex" style="padding: 1rem 0;">
+  
+        <div>
+          <input class="hide-item"  type="color" oninput="colorChange(event)" id="text-color" value="#ffffff">
+  
+          <button onclick="clickElementById('text-color')" id="text-color-btn">
+            Select text color
+          </button>
+  
+        </div>
+
+        <div style="padding: 0 1rem;">
+          <input class="hide-item" type="color" oninput="bgColorChange(event)" id="background-color" value="#000000"/>
+
+          <button onclick="clickElementById('background-color')" id="background-color-btn">Select background color</button>
+  
+        </div>
+
+      </div>
+
+      <div class="flex" style="padding: 1rem 0; margin-left: auto;">
+  
+          <button style="margin: 0 1rem;" onclick="toggleDownloadModal()" id="text-color-btn">Save</button>
+      
+          <input style="display: none;" id="file-upload" type="file" onchange="onFileChanged(event) "/>
+          <input style="display: none;" id="file-upload-image" type="file" onchange="onFileChanged(event, false) "/>
+
+
+         <button onclick="clickElementById('file-upload')" id="file-upload-btn">Upload background image</button>
+
+      </div>
+     
+    </div>
+  </div>
+
+  
+  
+  </div>
+ 
+<div id="modal-container">
+
+</div>
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jscolor/2.3.2/jscolor.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/3.6.3/fabric.min.js"></script>
+<script  src="js/utils.js"></script>
+<script src="js/modal.js"></script>
+<script src="js/app.js"></script>
+
+
+
+</html>
